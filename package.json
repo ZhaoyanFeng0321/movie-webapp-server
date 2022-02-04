@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec npx ts-node ./server.ts",
+    "start": "node build/server.js",
     "build": "tsc --project ./",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "dev": "nodemon server.ts"
   },
   "author": "",
   "license": "ISC",
