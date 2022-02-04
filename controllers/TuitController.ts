@@ -13,7 +13,7 @@ export default class TuitController implements TuitControllerI {
         this.app.get('/tuits',this.findAllTuits);
         this.app.get('/tuits/:tuitid',this.findTuitById);
         this.app.get('/tuits/:userid/tuits',this.findTuitByUser);
-        this.app.post('/tuis',this.createTuit);
+        this.app.post('/tuits',this.createTuit);
         this.app.delete('/tuits/:tuitid',this.deleteTuit);
         this.app.put('/tuits/:tuitid',this.updateTuit);
 
