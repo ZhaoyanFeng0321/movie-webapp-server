@@ -10,12 +10,12 @@ export default class TuitController implements TuitControllerI {
         this.app = app;
         this.tuitDao = tuitDao;
 
-        this.app.get('/tuits',this.findAllTuits);
-        this.app.get('/tuits/:tuitid',this.findTuitById);
-        this.app.get('/tuits/:userid/tuits',this.findTuitByUser);
-        this.app.post('/tuits',this.createTuit);
-        this.app.delete('/tuits/:tuitid',this.deleteTuit);
-        this.app.put('/tuits/:tuitid',this.updateTuit);
+        this.app.get('/tuits', this.findAllTuits);
+        this.app.get('/tuits/:tuitid', this.findTuitById);
+        this.app.get('/tuits/:userid/tuits', this.findTuitByUser);
+        this.app.post('/tuits', this.createTuit);
+        this.app.delete('/tuits/:tuitid', this.deleteTuit);
+        this.app.put('/tuits/:tuitid', this.updateTuit);
 
 
     }
@@ -41,6 +41,6 @@ export default class TuitController implements TuitControllerI {
             .then(status => res.json(status));
 
     updateTuit = (req: Request, res: Response) =>
-        this.tuitDao.updateTuit(req.params.tuitid,req.body)
-            .then(status=>res.json(status));
+        this.tuitDao.updateTuit(req.params.tuitid, req.body)
+            .then(status => res.json(status));
 }
