@@ -8,11 +8,11 @@ import bodyParser from "body-parser";
 const app = express();
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
 
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
-app.use(express.json);
+//app.use(express.json);
 
 const userController = UserController.getInstance(app);
 const tuitController = new TuitController(app, new TuitDao());
