@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 
-export default interface UserController {
+export default interface UserControllerI {
 
     findAllUsers(req: Request, res: Response): void;
 
@@ -11,5 +11,7 @@ export default interface UserController {
     deleteUser(req: Request, res: Response): void;
 
     updateUser(req: Request, res: Response): void;
+
+    deleteAllUsers(req:Request,res:Response): void;
 
 }

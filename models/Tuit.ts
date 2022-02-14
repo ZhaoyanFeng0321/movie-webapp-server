@@ -1,4 +1,4 @@
-import User from "./User";
+import User from "./users/User";
 
 export default class Tuit {
     private tuit: string = '';
