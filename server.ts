@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-const userController = new UserController(app, new UserDao());
+const userController = UserController.getInstance(app);
 const tuitController = new TuitController(app, new TuitDao());
 
 app.get('/hello', (req, res) =>
