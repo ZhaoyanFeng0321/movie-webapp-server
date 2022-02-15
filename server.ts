@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 //app.use(express.json);
 
 const userController = UserController.getInstance(app);
-const tuitController = new TuitController(app, new TuitDao());
+const tuitController = TuitController.getInstance(app);
 
 app.get('/hello', (req, res) =>
     res.send('Hello World!'));
