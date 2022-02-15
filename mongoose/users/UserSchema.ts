@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-    _id: String,
+    _id: { type: Schema.Types.ObjectId },
     username: {type: String, required: true},
     password: {type: String, required: true},
     firstName: String,
