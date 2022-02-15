@@ -37,7 +37,7 @@ export default class UserController implements UserControllerI {
             .then((users:User[]) => res.json(users));
 
     findUserById = (req: Request, res: Response) =>
-        UserController.userDao.findUserById(req.params.userid)
+        UserController.userDao.findUserById(req.params.uid)
             .then((user:User) => res.json(user));
 
     createUser = (req: Request, res: Response) =>
@@ -45,11 +45,11 @@ export default class UserController implements UserControllerI {
             .then((user:User) => res.json(user));
 
     updateUser = (req: Request, res: Response) =>
-        UserController.userDao.updateUser(req.params.userid, req.body)
+        UserController.userDao.updateUser(req.params.uid, req.body)
             .then((status) => res.send(status));
 
     deleteUser = (req: Request, res: Response) =>
-        UserController.userDao.deleteUser(req.params.userid)
+        UserController.userDao.deleteUser(req.params.uid)
             .then((status) => res.send(status));
 
     deleteAllUsers = (req: Request, res: Response) =>

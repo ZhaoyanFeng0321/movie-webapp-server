@@ -4,7 +4,7 @@ import Location from "./Location";
 import mongoose from "mongoose";
 
 export default class User {
-    private _id: mongoose.Schema.Types.ObjectId | null = null;
+    private _id: mongoose.Schema.Types.ObjectId|null=null;
     private username: string = '';
     private password: string = '';
     private firstName: string | null = null;

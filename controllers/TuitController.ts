@@ -25,11 +25,11 @@ export default class TuitController implements TuitControllerI {
             .then(tuits => res.json(tuits));
 
     findTuitById = (req: Request, res: Response) =>
-        this.tuitDao.findTuitById(req.params.tuitid)
+        this.tuitDao.findTuitById(req.params.tid)
             .then(tuit => res.json(tuit));
 
     findTuitByUser = (req: Request, res: Response) =>
-        this.tuitDao.findAllTuitsByUser(req.params.userid)
+        this.tuitDao.findAllTuitsByUser(req.params.tid)
             .then(tuits => res.json(tuits));
 
     createTuit = (req: Request, res: Response) =>
@@ -37,10 +37,10 @@ export default class TuitController implements TuitControllerI {
             .then(tuit => res.json(tuit));
 
     deleteTuit = (req: Request, res: Response) =>
-        this.tuitDao.deleteTuit(req.params.tuitid)
+        this.tuitDao.deleteTuit(req.params.tid)
             .then(status => res.json(status));
 
     updateTuit = (req: Request, res: Response) =>
-        this.tuitDao.updateTuit(req.params.tuitid, req.body)
+        this.tuitDao.updateTuit(req.params.tid, req.body)
             .then(status => res.json(status));
 }
