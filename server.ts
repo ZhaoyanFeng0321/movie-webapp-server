@@ -1,6 +1,5 @@
 import express from 'express';
 import mongoose from "mongoose";
-import TuitDao from "./daos/TuitDao";
 import UserController from "./controllers/UserController";
 import TuitController from "./controllers/TuitController";
 import bodyParser from "body-parser";
