@@ -1,4 +1,4 @@
-import User from "../models/users/User";
+import User from "../../models/users/User";
 
 export default interface UserDaoI {
 

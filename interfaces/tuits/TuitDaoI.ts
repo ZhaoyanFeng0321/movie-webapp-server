@@ -1,4 +1,4 @@
-import Tuit from '../models/tuits/Tuit';
+import Tuit from '../../models/tuits/Tuit';
 
 export default interface TuitDaoI {
     findAllTuits(): Promise<Tuit[]>;

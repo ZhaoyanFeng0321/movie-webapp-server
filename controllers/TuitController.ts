@@ -1,8 +1,7 @@
 import {Request, Response, Express} from "express";
 import TuitDao from "../daos/TuitDao";
-import TuitControllerI from "../interfaces/TuitControllerI";
+import TuitControllerI from "../interfaces/tuits/TuitControllerI";
 import Tuit from "../models/tuits/Tuit";
-import TuitModel from "../mongoose/tuits/TuitModel";
 
 export default class TuitController implements TuitControllerI {
 

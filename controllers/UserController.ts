@@ -1,6 +1,6 @@
 import {Request, Response, Express} from "express";
 import UserDao from "../daos/UserDao";
-import UserControllerI from "../interfaces/UserControllerI";
+import UserControllerI from "../interfaces/users/UserControllerI";
 import User from "../models/users/User";
 
 export default class UserController implements UserControllerI {

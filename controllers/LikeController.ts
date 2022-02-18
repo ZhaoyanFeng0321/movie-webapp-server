@@ -1,6 +1,6 @@
 import {Request, Response, Express} from "express";
 import LikeDao from "../daos/LikeDao";
-import LikeControllerI from "../interfaces/LikeControllerI";
+import LikeControllerI from "../interfaces/likes/LikeControllerI";
 
 export default class LikeController implements LikeControllerI {
 
