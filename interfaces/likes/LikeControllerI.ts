@@ -9,4 +9,7 @@ export default interface LikeControllerI {
 
     userUnlikesTuit(req: Request, res: Response): void;
 
+    deleteAllLikes(req: Request,res:Response):void;
+
+
 }

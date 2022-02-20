@@ -14,5 +14,6 @@ export default interface TuitControllerI {
 
     deleteTuit(req: Request, res: Response): void;
 
+    deleteAllTuit(req: Request, res: Response): void;
 
 }

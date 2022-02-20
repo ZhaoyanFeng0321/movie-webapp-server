@@ -8,4 +8,6 @@ export default interface LikeDaoI {
     userUnlikesTuit(tid: string, uid: string): Promise<any>;
 
     userLikeTuit(tid:string,uid:string):Promise<any>;
+
+    deleteAllLike(): Promise<any>;
 }

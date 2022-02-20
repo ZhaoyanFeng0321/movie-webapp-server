@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import LikeController from "./controllers/LikeController";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
+import MessageController from "./controllers/MessageController";
 
 const app = express();
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority');
@@ -21,6 +22,7 @@ const tuitController = TuitController.getInstance(app);
 const likeController = LikeController.getInstance(app);
 const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
+const messageController = MessageController.getInstance(app);
 
 app.get('/hello', (req, res) =>
     res.send('Hello World!'));
