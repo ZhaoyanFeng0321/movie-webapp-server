@@ -25,7 +25,6 @@ import MessageController from "./controllers/MessageController";
 
 const app = express();
 
-// connect to the database
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/development?retryWrites=true&w=majority');
 
 app.use(bodyParser.urlencoded({
