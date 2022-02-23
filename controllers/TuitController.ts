@@ -35,7 +35,7 @@ export default class TuitController implements TuitControllerI {
      * @return TuitController
      */
     public static getInstance = (app: Express): TuitController => {
-        if (TuitController.tuitController == null) {
+        if (TuitController.tuitController === null) {
             TuitController.tuitController = new TuitController();
 
             app.get("/api/tuits", TuitController.tuitController.findAllTuits);

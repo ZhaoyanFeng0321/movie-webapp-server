@@ -1,5 +1,5 @@
 /**
- * @file Implements DAO managing data storage of likes. Uses mongoose BookmarkModel
+ * @file Implements DAO managing data storage of bookmarks. Uses mongoose BookmarkModel
  * to integrate with MongoDB
  */
 import BookmarkModel from "../mongoose/bookmarks/BookmarkModel";
@@ -19,7 +19,7 @@ export default class BookmarkDao implements BookmarkDaoI {
      * @returns BookmarkDao
      */
     public static getInstance = (): BookmarkDao => {
-        if (BookmarkDao.bookmarkDao == null) {
+        if (BookmarkDao.bookmarkDao === null) {
             BookmarkDao.bookmarkDao = new BookmarkDao();
         }
         return BookmarkDao.bookmarkDao;

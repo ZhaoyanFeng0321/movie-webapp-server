@@ -39,7 +39,7 @@ export default class FollowController implements FollowControllerI {
      */
     public static getInstance = (app: Express): FollowController => {
 
-        if (FollowController.followController == null) {
+        if (FollowController.followController === null) {
             FollowController.followController = new FollowController();
 
             app.get("/api/users/:uid/followings", FollowController.followController.findAllUsersThatUserFollowing);

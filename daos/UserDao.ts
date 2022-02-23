@@ -19,7 +19,7 @@ export default class UserDao implements UserDaoI {
      * @returns UserDao
      */
     public static getInstance = (): UserDao =>{
-        if(UserDao.userDao == null){
+        if(UserDao.userDao === null){
             UserDao.userDao = new UserDao();
         }
         return UserDao.userDao;

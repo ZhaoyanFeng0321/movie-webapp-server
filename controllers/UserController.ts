@@ -33,7 +33,7 @@ export default class UserController implements UserControllerI {
      * @returns UserController
      */
     public static getInstance = (app:Express): UserController =>{
-        if(UserController.userController == null){
+        if(UserController.userController === null){
             UserController.userController = new UserController();
 
             app.get("/api/users",

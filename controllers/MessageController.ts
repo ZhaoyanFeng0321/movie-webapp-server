@@ -20,7 +20,7 @@ import {Express, Request, Response} from "express";
  *     <li>DELETE /api/messages/:mid to remove a particular message instance
  *     </li>
  *     <li> DELETE /api/messages to remove all message instances
- *     * </ul>
+ *     </ul>
  * @property {MessageDao} messageDao Singleton DAO implementing follow CRUD operations
  * @property {MessageController} messageController Singleton controller implementing
  * RESTful Web service API
@@ -33,7 +33,7 @@ export default class MessageController implements MessageControllerI {
 
     public static getInstance = (app: Express): MessageController => {
 
-        if (MessageController.messageController == null) {
+        if (MessageController.messageController === null) {
             MessageController.messageController = new MessageController();
 
             app.get("/api/users/:uid/messages/sent", MessageController.messageController.findAllMessageUserSent);

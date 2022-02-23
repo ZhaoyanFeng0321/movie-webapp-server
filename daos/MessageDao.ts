@@ -1,5 +1,5 @@
 /**
- * @file Implements DAO managing data storage of messages. Uses mongoose MassageModel
+ * @file Implements DAO managing data storage of messages. Uses mongoose MessageModel
  * to integrate with MongoDB
  */
 import MessageDaoI from "../interfaces/messages/MessageDaoI";
@@ -20,7 +20,7 @@ export default class MessageDao implements MessageDaoI {
      * @returns MessageDao
      */
     public static getInstance = (): MessageDao => {
-        if (MessageDao.messageDao == null) {
+        if (MessageDao.messageDao === null) {
             MessageDao.messageDao = new MessageDao();
         }
 
@@ -33,7 +33,7 @@ export default class MessageDao implements MessageDaoI {
     /**
      * Uses MessageModel to retrieve all messages document that specific user sent from messages collection
      * @param {string} uid User's primary key
-     * @returns Promise To be notified when massages are retrieved from the database
+     * @returns Promise To be notified when messages are retrieved from the database
      */
     findAllMessageUserSent = async (uid: string): Promise<Message[]> =>
         MessageModel.find({from: uid});
@@ -41,7 +41,7 @@ export default class MessageDao implements MessageDaoI {
     /**
      * Uses MessageModel to retrieve all messages document that specific user received from messages collection
      * @param {string} uid User's primary key
-     * @returns Promise To be notified when massages are retrieved from the database
+     * @returns Promise To be notified when messages are retrieved from the database
      */
     findAllMessageUserReceived = async (uid: string): Promise<Message[]> =>
         MessageModel.find({to: uid});
@@ -51,7 +51,7 @@ export default class MessageDao implements MessageDaoI {
      * user from messages collection
      * @param {string} uid1 User's primary key of sender
      * @param {string} uid2 User's primary key of receiver
-     * @returns Promise To be notified when massages are retrieved from the database
+     * @returns Promise To be notified when messages are retrieved from the database
      */
     findAllMessageUserSentToAnotherUser = async (uid1: string, uid2: string): Promise<Message[]> =>
         MessageModel.find({from: uid1, to: uid2});
@@ -60,7 +60,7 @@ export default class MessageDao implements MessageDaoI {
      * Inserts message instance into the database
      * @param {string} uid1 User's primary key of sender
      * @param {string} uid2 User's primary key of receive
-     * @param {User} message Instance to be inserted into the database
+     * @param {Message} message Instance to be inserted into the database
      * @returns Promise To be notified when message is inserted into the database
      */
     userSendsMessage = async (uid1: string, uid2: string, message: Message): Promise<Message> =>

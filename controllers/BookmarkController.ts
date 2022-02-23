@@ -38,7 +38,7 @@ export default class BookmarkController implements BookmarkControllerI {
      */
     public static getInstance = (app: Express): BookmarkController => {
 
-        if (BookmarkController.bookmarkController == null) {
+        if (BookmarkController.bookmarkController === null) {
             BookmarkController.bookmarkController = new BookmarkController();
 
             app.get("/api/bookmarks", BookmarkController.bookmarkController.findAllBookmarks);

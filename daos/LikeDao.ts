@@ -19,7 +19,7 @@ export default class LikeDao implements LikeDaoI {
      * @returns LikeDao
      */
     public static getInstance = (): LikeDao => {
-        if (LikeDao.likeDao == null) {
+        if (LikeDao.likeDao === null) {
             LikeDao.likeDao = new LikeDao();
         }
         return LikeDao.likeDao;

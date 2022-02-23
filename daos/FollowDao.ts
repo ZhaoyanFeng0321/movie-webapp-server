@@ -20,7 +20,7 @@ export default class FollowDao implements FollowDaoI {
      * @returns FollowDao
      */
     public static getInstance = (): FollowDao => {
-        if (FollowDao.followDao == null) {
+        if (FollowDao.followDao === null) {
             FollowDao.followDao = new FollowDao();
         }
         return FollowDao.followDao;

@@ -20,7 +20,7 @@ export default class TuitDao implements TuitDaoI {
      * @returns TuitDao
      */
     public static getInstance = (): TuitDao => {
-        if (TuitDao.tuitDao == null) {
+        if (TuitDao.tuitDao === null) {
             TuitDao.tuitDao = new TuitDao();
         }
         return TuitDao.tuitDao;
@@ -56,7 +56,7 @@ export default class TuitDao implements TuitDaoI {
     /**
      * Inserts tuit instance into the database
      * @param {string} uid User's primary key
-     * @param {User} user Instance to be inserted into the database
+     * @param {Tuit} tuit Instance to be inserted into the database
      * @returns Promise To be notified when tuit is inserted into the database
      */
     createTuitByUser = async (uid: string, tuit: Tuit): Promise<Tuit> =>
