@@ -23,11 +23,11 @@ import User from "../../models/users/User";
  * @property {number} longitude the longitude of user location
  */
 const UserSchema = new mongoose.Schema<User>({
-    username: {type: String, required: true},
-    password: {type: String, required: true},
+    username: {type: String, required: true,default: `testusername${Date.now()}`},
+    password: {type: String, required: true,default: `testusername${Date.now()}`},
     firstName: String,
     lastName: String,
-    email: String,
+    email: {type: String, required: true,default: `testusername${Date.now()}`},
     profilePhoto: String,
     headerImage: String,
     accountType: {
