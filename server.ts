@@ -17,17 +17,14 @@ import express from 'express';
 import mongoose from "mongoose";
 import UserController from "./controllers/UserController";
 import TuitController from "./controllers/TuitController";
-import bodyParser from "body-parser";
 import LikeController from "./controllers/LikeController";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 const app = express();
-
+app.use(express.json());
 
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/development?retryWrites=true&w=majority');
-//?
-app.use(express.json());
 
 //app.use(express.json);
 
