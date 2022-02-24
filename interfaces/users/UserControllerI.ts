@@ -14,4 +14,7 @@ export default interface UserControllerI {
 
     deleteAllUsers(req:Request,res:Response): void;
 
+    deleteUsersByUsername(req:Request,res:Response) : void;
+
+
 }

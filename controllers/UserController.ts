@@ -13,6 +13,7 @@ import User from "../models/users/User";
  *     <li>POST /api/users to create a new user instance</li>
  *     <li>GET /api/users to retrieve all the user instances</li>
  *     <li>GET /api/users/:uid to retrieve an individual user instance </li>
+ *     <li></li>
  *     <li>PUT /api/users to modify an individual user instance </li>
  *     <li>DELETE /api/users/:uid to remove a particular user instance</li>
  *     <li>DELETE /api/users to remove all users</li>
@@ -122,5 +123,9 @@ export default class UserController implements UserControllerI {
     deleteAllUsers = (req: Request, res: Response) =>
         UserController.userDao.deleteAllUsers()
             .then((status)=>res.send(status))
+
+    deleteUsersByUsername = (req: Request, res: Response) =>
+        UserController.userDao.deleteUsersByUsername(req.params.username)
+            .then(status => res.send(status));
 
 }
