@@ -14,4 +14,6 @@ export default interface TuitDaoI {
     deleteTuit(tid: string): Promise<any>;
 
     deleteAllTuit(): Promise<any>;
+
+    deleteTuitByContent(content:string): Promise<any>;
 };
