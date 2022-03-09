@@ -15,5 +15,4 @@ export default interface TuitDaoI {
 
     deleteAllTuit(): Promise<any>;
 
-    deleteTuitByContent(content:string): Promise<any>;
 };
