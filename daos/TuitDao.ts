@@ -93,7 +93,7 @@ export default class TuitDao implements TuitDaoI {
      * @returns Promise To be notified when tuit is removed from the database
      */
     deleteTuitByContent = async (content: string): Promise<any> =>
-        TuitModel.deleteMany({tuit:content});
+        TuitModel.deleteMany({content});
 
 }
 
