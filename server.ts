@@ -15,21 +15,39 @@
  */
 import express from 'express';
 import mongoose from "mongoose";
+
 import UserController from "./controllers/UserController";
 import TuitController from "./controllers/TuitController";
 import LikeController from "./controllers/LikeController";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
-var cors = require('cors')
+import AuthenticationController from "./controllers/AuthenticationController";
+const session = require("express-session");
+const cors = require('cors')
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    credentials: true
+}));
 
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/a3?retryWrites=true&w=majority');
 
+const SECRET = 'process.env.SECRET';
+let sess = {
+    secret: SECRET,
+    saveUninitialized: true,
+    resave: true,
+    cookie: {
+        secure: false
+    }
+}
 
+if (process.env.ENVIRONMENT === 'PRODUCTION') {
+    app.set('trust proxy', 1) // trust first proxy
+    sess.cookie.secure = true // serve secure cookies
+}
 
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
@@ -44,6 +62,9 @@ app.get('/hello', (req, res) =>
 app.get('/add/:a/:b', (req, res) => {
     res.send(req.params.a + req.params.b);
 })
+
+
+AuthenticationController(app);
 
 /**
  * Start a server listening at port 4000 locally

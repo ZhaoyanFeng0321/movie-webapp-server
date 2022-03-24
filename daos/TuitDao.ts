@@ -86,7 +86,7 @@ export default class TuitDao implements TuitDaoI {
      */
     deleteAllTuit = async (): Promise<any> =>
         TuitModel.deleteMany();
-    
+
 
 }
 
