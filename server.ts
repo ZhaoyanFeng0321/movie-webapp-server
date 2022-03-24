@@ -25,14 +25,13 @@ import MessageController from "./controllers/MessageController";
 import AuthenticationController from "./controllers/AuthenticationController";
 const session = require("express-session");
 const cors = require('cors')
-
 const app = express();
 
 app.use(cors({
     credentials: true,
     origin: "https://spiffy-cajeta-8e1a89.netlify.app"
-
 }));
+
 app.use(express.json());
 mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/a3?retryWrites=true&w=majority');
 
