@@ -23,10 +23,9 @@ import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 import AuthenticationController from "./controllers/AuthenticationController";
-const session = require("express-session");
 const cors = require('cors')
 const app = express();
-
+const session = require("express-session");
 app.use(cors({
     credentials: true,
     origin: "https://spiffy-cajeta-8e1a89.netlify.app"

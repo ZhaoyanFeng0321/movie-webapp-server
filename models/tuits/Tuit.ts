@@ -3,6 +3,7 @@
  */
 import User from "../users/User";
 import mongoose from "mongoose";
+import Stats from "./Stats";
 
 /**
  * @typedef Tuit Represents tuits posted on Tuiter
@@ -15,5 +16,5 @@ export default interface Tuit {
     tuit: string;
     postedBy?: User;
     postedOn: Date;
-
+    stats: Stats;
 }

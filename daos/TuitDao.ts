@@ -88,6 +88,12 @@ export default class TuitDao implements TuitDaoI {
         TuitModel.deleteMany();
 
 
+    updateLikes = async (tid: string, newStats: any): Promise<any> =>
+        TuitModel.updateOne(
+            {_id:tid},
+            {$set:{stats:newStats}}
+        );
+
 }
 
 
