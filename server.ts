@@ -34,13 +34,16 @@ app.use(cors({
     origin: "https://spiffy-cajeta-8e1a89.netlify.app"
 }));
 
+
+
 const SECRET = 'process.env.SECRET';
 let sess = {
     secret: SECRET,
     saveUninitialized: true,
     resave: true,
     cookie: {
-        secure: false
+        secure: true,
+        sameSite: "none"
     }
 }
 
