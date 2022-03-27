@@ -73,7 +73,7 @@ export default class DislikeController {
                 res.json(tuitsFromDislikes);
             });
     }
-    
+
     /**
      * Retrieves all users that disliked a tuit from the database
      * @param {Request} req Represents request from client, including the path
