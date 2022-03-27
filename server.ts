@@ -13,7 +13,7 @@
  * Connects to a remote MongoDB instance hosted on the Atlas cloud database
  * service
  */
-import express from 'express';
+import express from "express";
 import mongoose from "mongoose";
 
 import UserController from "./controllers/UserController";
@@ -23,15 +23,18 @@ import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
 import MessageController from "./controllers/MessageController";
 import AuthenticationController from "./controllers/AuthenticationController";
+import SessionController from "./controllers/SessionController";
+import DislikeController from "./controllers/DislikeController";
 const cors = require("cors");
 const session = require("express-session");
-mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/a3?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/a4?retryWrites=true&w=majority');
 
 
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: "https://spiffy-cajeta-8e1a89.netlify.app"
+    origin: 'http://localhost:3000'
+    //origin: "https://spiffy-cajeta-8e1a89.netlify.app"
 }));
 
 
@@ -42,8 +45,7 @@ let sess = {
     saveUninitialized: true,
     resave: true,
     cookie: {
-        secure: true,
-        sameSite: "none"
+        secure: false
     }
 }
 
@@ -61,6 +63,7 @@ const likeController = LikeController.getInstance(app);
 const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const messageController = MessageController.getInstance(app);
+const dislikeController = DislikeController.getInstance(app);
 
 app.get('/hello', (req, res) =>
     res.send('Hello World!'));
@@ -69,7 +72,7 @@ app.get('/add/:a/:b', (req, res) => {
     res.send(req.params.a + req.params.b);
 })
 
-
+SessionController(app);
 AuthenticationController(app);
 
 /**
