@@ -98,6 +98,7 @@ export default class DislikeController {
         DislikeController.dislikeDao.userDislikeTuit(req.params.tid, req.params.uid)
             .then(dislikes => res.json(dislikes));
 
+
     /**
      * Delete a dislike in database and returns status of delete.
      * @param {Request} req Represents request from client, including the
