@@ -5,6 +5,7 @@ import {Request, Response, Express} from "express";
 import TuitDao from "../daos/TuitDao";
 import DislikeDao from "../daos/DislikeDao";
 import TuitService from "../services/tuitService";
+import UserDao from "../daos/UserDao";
 
 /**
  * @class DislikeController Implements RESTful Web service API for dislikes resource.
@@ -60,13 +61,24 @@ export default class DislikeController {
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON arrays containing the tuit objects that were disliked
      */
-    findAllTuitsDislikedByUser = (req: Request, res: Response) => {
+    findAllTuitsDislikedByUser = async (req: Request, res: Response) => {
 
-        const uid = req.params.uid;
         // @ts-ignore
-        const profile = req.session['profile'];
-        const userId = uid === "my" && profile ?
-            profile._id : uid;
+        let userId = req.params.uid === req.session['profile'].username && req.session['profile'] ?
+            // @ts-ignore
+            req.session['profile']._id : req.params.uid;
+
+        let flag = false;
+        // @ts-ignore
+        if (req.params.uid === req.session['profile'].username) {
+            flag = true;
+        }
+        const userDao = UserDao.getInstance()
+
+        if (!flag) {
+            let user = await userDao.findUserByUsername(userId);
+            userId = user._id;
+        }
 
         DislikeController.dislikeDao.findAllTuitsDislikedByUser(userId)
             .then(async (dislikes) => {

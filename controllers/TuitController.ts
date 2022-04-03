@@ -6,6 +6,8 @@ import TuitDao from "../daos/TuitDao";
 import TuitControllerI from "../interfaces/tuits/TuitControllerI";
 import Tuit from "../models/tuits/Tuit";
 import TuitService from "../services/tuitService";
+import UserController from "./UserController";
+import UserDao from "../daos/UserDao";
 
 /**
  * @class TuitController Implements RESTful Web service API for tuits resource.
@@ -29,6 +31,7 @@ export default class TuitController implements TuitControllerI {
     private static tuitDao: TuitDao = TuitDao.getInstance();
     private static tuitController: TuitController | null = null;
     private static tuitService: TuitService = TuitService.getInstance();
+
 
     /**
      * Creates singleton controller instance
@@ -105,16 +108,29 @@ export default class TuitController implements TuitControllerI {
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON arrays containing the tuit objects
      */
-    findTuitByUser = (req: Request, res: Response) => {
+    findTuitByUser = async (req: Request, res: Response) => {
 
         // @ts-ignore
-        let userId = req.params.uid === "my" && req.session['profile'] ?
+        let userId = req.params.uid === req.session['profile'].username && req.session['profile'] ?
             // @ts-ignore
             req.session['profile']._id : req.params.uid;
+
+        let flag = false;
+        // @ts-ignore
+        if (req.params.uid === req.session['profile'].username) {
+            flag = true;
+        }
+        const userDao = UserDao.getInstance()
+        if (!flag) {
+            let user = await userDao.findUserByUsername(userId);
+            userId = user._id;
+        }
+
+
         TuitController.tuitDao.findAllTuitsByUser(userId)
-            .then(async(tuits: Tuit[]) => {
+            .then(async (tuits: Tuit[]) => {
                 const getTuits = await TuitController.tuitService
-                    .getTuitsForLikeDislikeByUser(userId,tuits);
+                    .getTuitsForLikeDislikeByUser(userId, tuits);
                 res.json(getTuits)
             });
     }
