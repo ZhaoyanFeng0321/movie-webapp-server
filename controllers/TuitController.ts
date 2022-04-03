@@ -5,6 +5,7 @@ import {Request, Response, Express} from "express";
 import TuitDao from "../daos/TuitDao";
 import TuitControllerI from "../interfaces/tuits/TuitControllerI";
 import Tuit from "../models/tuits/Tuit";
+import TuitService from "../services/tuitService";
 
 /**
  * @class TuitController Implements RESTful Web service API for tuits resource.
@@ -27,6 +28,7 @@ export default class TuitController implements TuitControllerI {
 
     private static tuitDao: TuitDao = TuitDao.getInstance();
     private static tuitController: TuitController | null = null;
+    private static tuitService: TuitService = TuitService.getInstance();
 
     /**
      * Creates singleton controller instance
@@ -60,9 +62,28 @@ export default class TuitController implements TuitControllerI {
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON arrays containing the tuit objects
      */
-    findAllTuits = (req: Request, res: Response) =>
-        TuitController.tuitDao.findAllTuits()
-            .then((tuits: Tuit[]) => res.json(tuits));
+    findAllTuits = (req: Request, res: Response) => {
+
+        // @ts-ignore
+        const profile = req.session['profile'];
+        if(profile){
+            //if already login in
+            const userId = profile._id;
+            TuitController.tuitDao.findAllTuits()
+                .then(async (tuits:Tuit[])=>{
+                    const markedTuits = await TuitController.tuitService
+                        .getTuitsForLikeDislikeByUser(userId,tuits);
+                    res.json(markedTuits);
+                })
+        }else{
+            //not login in
+            TuitController.tuitDao.findAllTuits()
+                .then((tuits: Tuit[]) => res.json(tuits));
+        }
+
+
+
+    }
 
 
     /**
@@ -91,7 +112,11 @@ export default class TuitController implements TuitControllerI {
             // @ts-ignore
             req.session['profile']._id : req.params.uid;
         TuitController.tuitDao.findAllTuitsByUser(userId)
-            .then((tuits: Tuit[]) => res.json(tuits));
+            .then(async(tuits: Tuit[]) => {
+                const getTuits = await TuitController.tuitService
+                    .getTuitsForLikeDislikeByUser(userId,tuits);
+                res.json(getTuits)
+            });
     }
 
     /**

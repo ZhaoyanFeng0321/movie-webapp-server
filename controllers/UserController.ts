@@ -41,6 +41,8 @@ export default class UserController implements UserControllerI {
                 UserController.userController.findAllUsers);
             app.get("/api/users/:uid",
                 UserController.userController.findUserById);
+            app.get("/api/users/username/:username",
+                UserController.userController.findUserByUsername);
             app.post("/api/users",
                 UserController.userController.createUser);
             app.put("/api/users/:uid",
@@ -51,6 +53,7 @@ export default class UserController implements UserControllerI {
                 UserController.userController.deleteAllUsers);
             app.get("/api/users/username/:username/delete",
                 UserController.userController.deleteUsersByUsername);
+
         }
         return UserController.userController;
 
@@ -80,6 +83,17 @@ export default class UserController implements UserControllerI {
     findUserById = (req: Request, res: Response) =>
         UserController.userDao.findUserById(req.params.uid)
             .then((user:User) => res.json(user));
+
+    /**
+     * Retrieves the user by their username
+     * @param {Request} req Represents request from client, including path
+     * parameter uid identifying the primary key of the user to be retrieved
+     * @param {Response} res Represents response to client, including the
+     * body formatted as JSON containing the user that matches the user ID
+     */
+    findUserByUsername = (req: Request, res: Response) =>
+        UserController.userDao.findUserByUsername(req.params.username)
+            .then((user:User)=>res.json(user));
 
     /**
      * Creates a new user instance
@@ -129,5 +143,7 @@ export default class UserController implements UserControllerI {
     deleteUsersByUsername = (req: Request, res: Response) =>
         UserController.userDao.deleteUsersByUsername(req.params.username)
             .then(status => res.send(status));
+
+
 
 }

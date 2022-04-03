@@ -4,6 +4,7 @@
 import {Request, Response, Express} from "express";
 import TuitDao from "../daos/TuitDao";
 import DislikeDao from "../daos/DislikeDao";
+import TuitService from "../services/tuitService";
 
 /**
  * @class DislikeController Implements RESTful Web service API for dislikes resource.
@@ -26,6 +27,7 @@ export default class DislikeController {
 
     private static dislikeDao: DislikeDao = DislikeDao.getInstance();
     private static tuitDao: TuitDao = TuitDao.getInstance();
+    private static tuitService: TuitService = TuitService.getInstance();
     private static dislikeController: DislikeController | null = null;
 
     /**
@@ -67,10 +69,12 @@ export default class DislikeController {
             profile._id : uid;
 
         DislikeController.dislikeDao.findAllTuitsDislikedByUser(userId)
-            .then(dislikes => {
+            .then(async (dislikes) => {
                 const dislikesNonNullTuits = dislikes.filter(dislike => dislike.tuit);
                 const tuitsFromDislikes = dislikesNonNullTuits.map(dislike => dislike.tuit);
-                res.json(tuitsFromDislikes);
+                const getTuits = await DislikeController.tuitService
+                    .getTuitsForLikeDislikeByUser(userId, tuitsFromDislikes);
+                res.json(getTuits);
             });
     }
 

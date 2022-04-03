@@ -5,6 +5,7 @@ import {Request, Response, Express} from "express";
 import LikeDao from "../daos/LikeDao";
 import TuitDao from "../daos/TuitDao";
 import LikeControllerI from "../interfaces/likes/LikeControllerI";
+import TuitService from "../services/tuitService";
 
 /**
  * @class LikeController Implements RESTful Web service API for likes resource.
@@ -28,6 +29,7 @@ export default class LikeController implements LikeControllerI {
 
     private static likeDao: LikeDao = LikeDao.getInstance();
     private static tuitDao: TuitDao = TuitDao.getInstance();
+    private static tuitSerive: TuitService = TuitService.getInstance();
     private static likeController: LikeController | null = null;
 
     /**
@@ -69,10 +71,12 @@ export default class LikeController implements LikeControllerI {
             profile._id : uid;
 
         LikeController.likeDao.findAllTuitsLikedByUser(userId)
-            .then(likes => {
+            .then(async (likes) => {
                 const likesNonNullTuits = likes.filter(like => like.tuit);
                 const tuitsFromLikes = likesNonNullTuits.map(like => like.tuit);
-                res.json(tuitsFromLikes);
+                const getTuits = await LikeController.tuitSerive
+                    .getTuitsForLikeDislikeByUser(userId,tuitsFromLikes);
+                res.json(getTuits);
             });
 
     }

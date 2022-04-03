@@ -27,17 +27,13 @@ import SessionController from "./controllers/SessionController";
 import DislikeController from "./controllers/DislikeController";
 const cors = require("cors");
 const session = require("express-session");
-mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/a4?retryWrites=true&w=majority');
-
+mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/final?retryWrites=true&w=majority');
 
 const app = express();
 app.use(cors({
     credentials: true,
-    //origin: 'http://localhost:3000'
-    origin: "https://spiffy-cajeta-8e1a89.netlify.app"
+    origin: 'http://localhost:3000'
 }));
-
-
 
 const SECRET = 'process.env.SECRET';
 let sess = {
