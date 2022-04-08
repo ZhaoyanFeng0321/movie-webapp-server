@@ -1,5 +1,6 @@
 import Image from "../../models/media/Image";
 
+
 export default interface ImageDaoI {
     findAllImages():Promise<Image[]>;
 
@@ -10,5 +11,7 @@ export default interface ImageDaoI {
     deleteImagesByTuit(tid: string):Promise<any>;
 
     deleteImageById(pid: string):Promise<any>;
+
+    uploadImageForTuit(tid: string, image: Image):Promise<Image>;
 
 }

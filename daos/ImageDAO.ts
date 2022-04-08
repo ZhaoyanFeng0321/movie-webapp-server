@@ -5,6 +5,7 @@
 import ImageDAOI from "../interfaces/images/ImageDAOI";
 import ImageModel from "../mongoose/media/ImageModel";
 import Image from "../models/media/Image";
+import TuitModel from "../mongoose/tuits/TuitModel";
 
 /**
  * @class ImageDAO Implements Data Access Object managing data storage
@@ -28,6 +29,9 @@ export default class ImageDAO implements ImageDAOI {
     private constructor() {
     }
 
+    uploadImageForTuit= async (tid: string, image: Image): Promise<Image> =>
+        ImageModel.create({...image, attachedBy: tid});
+
     deleteImageById = async (pid: string): Promise<any> =>
         ImageModel.deleteOne({_id: pid});
 
@@ -44,6 +48,7 @@ export default class ImageDAO implements ImageDAOI {
 
     findAllImages = async (): Promise<Image[]> =>
         ImageModel.find();
+
 
 
 }

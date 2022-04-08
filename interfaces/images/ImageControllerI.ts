@@ -13,4 +13,6 @@ export default interface ImageControllerI{
 
     deleteImageById(req: Request, res: Response):void;
 
+    uploadImageForTuit(req: Request, res: Response):void;
+
 }

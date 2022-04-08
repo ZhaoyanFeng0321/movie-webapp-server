@@ -42,6 +42,8 @@ export default class ImageController implements ImageControllerI {
             app.get("/api/images/:pid", ImageController.imageController.findImageById);
             app.delete("/api/tuits/:tid/images", ImageController.imageController.deleteImagesByTuit);
             app.delete("/api/images/:pid", ImageController.imageController.deleteImageById);
+            app.post("/api/tuits/:tid/images", ImageController.imageController.uploadImageForTuit);
+
         }
 
         return ImageController.imageController;
@@ -70,6 +72,12 @@ export default class ImageController implements ImageControllerI {
     findAllImages = (req: Request, res: Response) =>
         ImageController.imageDao.findAllImages()
             .then(images => res.json(images));
+
+    uploadImageForTuit= (req: Request, res: Response) =>
+        ImageController.imageDao.uploadImageForTuit(req.params.tid, req.body)
+            .then(image => res.json(image));
+    //TuitController.tuitDao.createTuitByUser(userId,req.body)
+    //             .then((tuit)=>res.json(tuit));
 
 };
 

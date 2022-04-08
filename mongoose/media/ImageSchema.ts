@@ -11,7 +11,7 @@ import Image from "../../models/media/Image";
  */
 const ImageSchema = new mongoose.Schema<Image>({
     attachedBy: {type: Schema.Types.ObjectId, ref: "TuitModel"},
-    src: String
+    image: String
 }, {collection: "images"});
 
 export default ImageSchema;
