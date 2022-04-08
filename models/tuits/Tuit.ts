@@ -20,4 +20,5 @@ export default interface Tuit {
     postedOn: Date;
     stats: Stats;
     image?: string;
+    youtube?: string;
 }
