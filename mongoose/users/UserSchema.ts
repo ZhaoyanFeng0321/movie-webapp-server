@@ -32,9 +32,8 @@ const UserSchema = new mongoose.Schema<User>({
     headerImage: String,
     accountType: {
         type: String,
-        enum: ['PERSONAL', 'ACADEMIC', 'PROFESSIONAL']
+        enum: ['PERSONAL', 'VERIFIED', 'ADMIN']
     },
-    maritalStatus: {type: String, enum: ['MARRIED', 'SINGLE', 'WIDOWED']},
     biography: String,
     dateOfBirth: Date,
     joined: {type: Date, default: Date.now},

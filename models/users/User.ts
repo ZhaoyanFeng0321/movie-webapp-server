@@ -2,7 +2,7 @@
  * @file User data model
  */
 import AccountType from "./AccountType";
-import MaritalStatus from "./MaritalStatus";
+// import MaritalStatus from "./MaritalStatus";
 import Location from "./Location";
 import mongoose from "mongoose";
 
@@ -16,8 +16,7 @@ import mongoose from "mongoose";
  * @property {string} email the email of user
  * @property {string} profilePhoto the profile photo of user
  * @property {string} headerImage the header image of user
- * @property {string} accountType the account type of user: personal,academic or professional
- * @property {string} maritalStatus the marital status of user: married, single or widowed
+ * @property {string} accountType the account type of user: personal, celebrity or administrator
  * @property {string} biography the biography of user
  * @property {date} dateOfBirth the birth date of user
  * @property {date} joined the time of user joined
@@ -34,7 +33,6 @@ export default interface User {
     profilePhoto?: string;
     headerImage?: string;
     accountType: AccountType;
-    maritalStatus: MaritalStatus;
     biography?: string;
     dateOfBirth?: Date;
     joined: Date;

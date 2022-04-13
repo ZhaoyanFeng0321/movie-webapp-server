@@ -17,19 +17,16 @@ import express from "express";
 import mongoose from "mongoose";
 
 import UserController from "./controllers/UserController";
-import TuitController from "./controllers/TuitController";
-import LikeController from "./controllers/LikeController";
+import ReviewController from "./controllers/ReviewController";
 import FollowController from "./controllers/FollowController";
 import BookmarkController from "./controllers/BookmarkController";
-import MessageController from "./controllers/MessageController";
 import AuthenticationController from "./controllers/AuthenticationController";
 import SessionController from "./controllers/SessionController";
-import DislikeController from "./controllers/DislikeController";
-import ImageController from "./controllers/ImageController";
+import MovieController from "./controllers/MovieController";
 
 const cors = require("cors");
 const session = require("express-session");
-mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/final?retryWrites=true&w=majority');
+// mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/final?retryWrites=true&w=majority');
 
 const app = express();
 app.use(cors({
@@ -56,20 +53,15 @@ app.use(session(sess))
 app.use(express.json());
 
 const userController = UserController.getInstance(app);
-const tuitController = TuitController.getInstance(app);
-const likeController = LikeController.getInstance(app);
+const tuitController = ReviewController.getInstance(app);
 const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
-const messageController = MessageController.getInstance(app);
-const dislikeController = DislikeController.getInstance(app);
-const imageController = ImageController.getInstance(app);
+const movieController = MovieController.getInstance(app);
 
-app.get('/hello', (req, res) =>
+
+app.get('/', (req, res) =>
     res.send('Hello World!'));
 
-app.get('/add/:a/:b', (req, res) => {
-    res.send(req.params.a + req.params.b);
-})
 
 SessionController(app);
 AuthenticationController(app);
@@ -80,3 +72,6 @@ AuthenticationController(app);
  */
 const PORT = 4000;
 app.listen(process.env.PORT || PORT);
+
+
+//Todo: acting, rebuild uml, build database mon

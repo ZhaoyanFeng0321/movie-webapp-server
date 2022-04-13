@@ -4,8 +4,8 @@
 
 enum AccountType {
     Personal = 'PERSONAL',
-    Academic = 'ACADEMIC',
-    Professional = 'PROFESSIONAL'
+    Actor = 'ACTOR',
+    Admin = 'ADMIN'
 };
 
 export default AccountType;

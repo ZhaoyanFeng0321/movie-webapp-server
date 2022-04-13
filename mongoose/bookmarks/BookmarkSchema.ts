@@ -11,7 +11,7 @@ import Bookmark from "../../models/bookmarks/Bookmark";
  */
 const BookmarkSchema = new mongoose.Schema<Bookmark>({
 
-    bookmarkedTuit: {type: Schema.Types.ObjectId,ref:"TuitModel"},
+    movie: {type: Schema.Types.ObjectId,ref:"MovieModel"},
     bookmarkedBy: {type: Schema.Types.ObjectId,ref:"UserModel"}
 },{collection:"bookmarks"});
 

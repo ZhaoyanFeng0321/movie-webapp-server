@@ -3,17 +3,17 @@
  * users and tuits, as in user bookmarks a tuit
  */
 
-import Tuit from "../tuits/Tuit";
+import Movie from "../movies/Movie";
 import User from "../users/User";
 
 /**
- * @typedef Bookmark Represents bookmarks relationship between a user and a tuit,
+ * @typedef Bookmark Represents bookmarks relationship between a user and a movie,
  * as in a user bookmarks a tuit
- * @property {Tuit} bookmarkedTuit Tuit being bookmarked
+ * @property {Review} bookmarkedTuit Tuit being bookmarked
  * @property {User} bookmarkedBy User bookmarking the tuit
  */
 
 export default interface Bookmark{
-    bookmarkedTuit: Tuit,
+    movie: Movie,
     bookmarkedBy: User
 };

@@ -1,14 +1,17 @@
 import Bookmark from "../../models/bookmarks/Bookmark";
+import Movie from "../../models/movies/Movie";
 
 export default interface BookmarkDaoI{
     findAllBookmarks():Promise<Bookmark[]>;
 
-    findAllTuitsThatUserBookmarked(uid:string): Promise<Bookmark[]>;
+    findAllMoviesThatUserBookmarked(uid:string): Promise<Bookmark[]>;
 
-    findAllUsersThatBookmarkedTuit(tid: string):Promise<Bookmark[]>;
+    findAllUsersThatBookmarkedMovie(mid: string):Promise<Bookmark[]>;
 
-    userBookmarksTuit(tid:string, uid:string): Promise<any>;
+    //userBookmarksMovie(mid:string, uid:string): Promise<any>;
 
-    userUnbookmarksTuit(tid:string,uid:string): Promise<any>;
+    userBookmarksMovie(movie:Movie, uid:string): Promise<any>;
+
+    userUnbookmarksMovie(mid:string,uid:string): Promise<any>;
 
 }

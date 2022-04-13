@@ -5,6 +5,8 @@
 import BookmarkModel from "../mongoose/bookmarks/BookmarkModel";
 import Bookmark from "../models/bookmarks/Bookmark";
 import BookmarkDaoI from "../interfaces/bookmarks/BookmarkDaoI";
+import Movie from "../models/movies/Movie";
+import MovieModel from "../mongoose/movies/MovieModel";
 
 /**
  * @class BookmarkDao Implements Data Access Object managing data storage
@@ -42,8 +44,8 @@ export default class BookmarkDao implements BookmarkDaoI {
      * @returns Promise To be notified when the bookmarks are retrieved from
      * database
      */
-    findAllUsersThatBookmarkedTuit = async (tid: string): Promise<Bookmark[]> =>
-        BookmarkModel.find({bookmarkedTuit: tid})
+    findAllUsersThatBookmarkedMovie = async (mid: string): Promise<Bookmark[]> =>
+        BookmarkModel.find({movie: mid})
             .populate("bookmarkedBy")
             .exec();
 
@@ -52,27 +54,42 @@ export default class BookmarkDao implements BookmarkDaoI {
      * @returns Promise To be notified when the bookmarks are retrieved from
      * database
      */
-    findAllTuitsThatUserBookmarked = async (uid: string): Promise<Bookmark[]> =>
-        BookmarkModel.find({bookmarkedBy: uid}).populate("bookmarkedTuit")
+    findAllMoviesThatUserBookmarked = async (uid: string): Promise<Bookmark[]> =>
+        BookmarkModel.find({bookmarkedBy: uid}).populate("movie")
             .exec();
 
     /**
      * Inserts bookmark instance into the database
-     * @param {string} tid Tuit's primary key
+     * @param {Movie} movie Tuit's primary key
      * @param {string} uid User's primary key
      * @returns Promise To be notified when bookmark is inserted into the database
      */
-    userBookmarksTuit = async (tid: string, uid: string): Promise<any> =>
-        BookmarkModel.create({bookmarkedTuit: tid, bookmarkedBy: uid});
+    // userBookmarksMovie = async (mid: string, uid: string): Promise<any> =>
+    //     BookmarkModel.create({movie: mid, bookmarkedBy: uid});
+
+     userBookmarksMovie = async(movie: Movie, uid: string) => {
+        let bookmark = {};
+        const existMovie = await MovieModel.findOne({imdbID: movie.imdbID});
+        if (existMovie) {
+            bookmark = await BookmarkModel.create({movie: movie._id, bookmarkedBy: uid});
+        } else {
+            const actualMovie = await MovieModel.create({movie})
+            bookmark = await BookmarkModel.create({movie: actualMovie._id, bookmarkedBy: uid});
+        }
+        return bookmark;
+    }
 
     /**
      * Removes bookmark from the database
-     * @param {string} tid Tuit's primary key
+     * @param {string} mid Tuit's primary key
      * @param {string} uid User's primary key
      * @returns Promise To be notified when bookmark is removed from the database
      */
-    userUnbookmarksTuit = async (tid: string, uid: string): Promise<any> =>
-        BookmarkModel.deleteOne({bookmarkedTuit: tid, bookmarkedBy: uid});
+    userUnbookmarksMovie = async (mid: string, uid: string): Promise<any> =>
+        BookmarkModel.deleteOne({movie: mid, bookmarkedBy: uid});
+
+    findUserBookmarksMovie = async (uid: string, mid: string): Promise<any> =>
+        BookmarkModel.findOne({bookmarkedBy: uid, movie: mid});
 
 
 }
