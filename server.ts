@@ -57,6 +57,8 @@ const tuitController = ReviewController.getInstance(app);
 const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const movieController = MovieController.getInstance(app);
+const reviewController = ReviewController.getInstance(app);
+
 
 
 app.get('/', (req, res) =>
