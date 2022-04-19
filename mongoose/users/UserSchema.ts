@@ -2,8 +2,9 @@
  * @file Implements mongoose schema for users
  */
 
-import mongoose, {Schema} from "mongoose";
+import mongoose from "mongoose";
 import User from "../../models/users/User";
+import AccountType from "../../models/users/AccountType";
 
 /**
  * @typedef User Represents users who use Tuiter
@@ -32,7 +33,8 @@ const UserSchema = new mongoose.Schema<User>({
     headerImage: String,
     accountType: {
         type: String,
-        enum: ['PERSONAL', 'VERIFIED', 'ADMIN']
+        enum: ['PERSONAL', 'ACTOR', 'ADMIN'],
+        default: AccountType.Personal
     },
     biography: String,
     dateOfBirth: Date,
