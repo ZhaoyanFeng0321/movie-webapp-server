@@ -48,7 +48,7 @@ export default class BookmarkController implements BookmarkControllerI {
             app.get("/api/movies/:mid/bookmarks", BookmarkController.bookmarkController.findAllUsersThatBookmarkedMovie);
 
             app.post("/api/users/:uid/bookmarks", BookmarkController.bookmarkController.userBookmarksMovie);
-            app.delete("/api/users/:uid/unbookmarks/:mid", BookmarkController.bookmarkController.userUnbookmarksMovie);
+            app.delete("/api/users/:uid/bookmarks/:mid", BookmarkController.bookmarkController.userUnbookmarksMovie);
 
 
         }

@@ -11,7 +11,7 @@ import Review from "../../models/reviews/Review";
  * @property {date} postedOn the post time of review
  */
 const ReviewSchema = new mongoose.Schema<Review>({
-    review: {type: String, required: true},
+    review: {type: String, default: ""},
     from: {type: Schema.Types.ObjectId, ref: "UserModel"},
     to: {type: Schema.Types.ObjectId, ref: "MovieModel"},
     postedOn: {type: Date, default: Date.now},

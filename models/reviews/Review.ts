@@ -17,7 +17,7 @@ import Movie from "../movies/Movie";
  */
 export default interface Review {
      _id?: mongoose.Schema.Types.ObjectId;
-    review: string;
+    review?: string;
     from: User;
     to: Movie;
     postedOn: Date;

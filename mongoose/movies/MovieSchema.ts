@@ -8,6 +8,7 @@ import Movie from "../../models/movies/Movie";
 const MovieSchema = new mongoose.Schema<Movie>({
     title: {type: String, required: true},
     poster: String,
+    imdbID: String,
     //length: Number,
     //released: {type: Date, default: Date.now},
     //director: String,

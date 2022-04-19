@@ -17,7 +17,7 @@ import User from "../users/User";
 export default interface Movie {
     _id?: mongoose.Schema.Types.ObjectId;
     title: string;
-    imdbID: string;
+    imdbID?: string;
     poster?: string;
     // length: number;
     // director: string;

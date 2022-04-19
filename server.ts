@@ -23,6 +23,7 @@ import BookmarkController from "./controllers/BookmarkController";
 import AuthenticationController from "./controllers/AuthenticationController";
 import SessionController from "./controllers/SessionController";
 import MovieController from "./controllers/MovieController";
+import ActController from "./controllers/ActController";
 
 const cors = require("cors");
 const session = require("express-session");
@@ -58,6 +59,8 @@ const followController = FollowController.getInstance(app);
 const bookmarkController = BookmarkController.getInstance(app);
 const movieController = MovieController.getInstance(app);
 const reviewController = ReviewController.getInstance(app);
+const actController = ActController.getInstance(app);
+
 
 
 
@@ -76,4 +79,4 @@ const PORT = 4000;
 app.listen(process.env.PORT || PORT);
 
 
-//Todo: acting, rebuild uml, build database mon
+//Todo: acting, build database mon
