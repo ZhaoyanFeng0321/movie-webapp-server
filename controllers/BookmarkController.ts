@@ -43,12 +43,12 @@ export default class BookmarkController implements BookmarkControllerI {
         if (BookmarkController.bookmarkController === null) {
             BookmarkController.bookmarkController = new BookmarkController();
 
-            app.get("/api/bookmarks", BookmarkController.bookmarkController.findAllBookmarks);
-            app.get("/api/users/:uid/bookmarks", BookmarkController.bookmarkController.findAllMoviesThatUserBookmarked);
-            app.get("/api/movies/:mid/bookmarks", BookmarkController.bookmarkController.findAllUsersThatBookmarkedMovie);
+            app.get("/api/collects", BookmarkController.bookmarkController.findAllBookmarks);
+            app.get("/api/users/:uid/collects", BookmarkController.bookmarkController.findAllMoviesThatUserBookmarked);
+            app.get("/api/movies/:mid/collects", BookmarkController.bookmarkController.findAllUsersThatBookmarkedMovie);
 
-            app.post("/api/users/:uid/bookmarks", BookmarkController.bookmarkController.userBookmarksMovie);
-            app.delete("/api/users/:uid/bookmarks/:mid", BookmarkController.bookmarkController.userUnbookmarksMovie);
+            app.post("/api/users/:uid/collects", BookmarkController.bookmarkController.userBookmarksMovie);
+            app.delete("/api/users/:uid/collects/:mid", BookmarkController.bookmarkController.userUnbookmarksMovie);
 
 
         }
