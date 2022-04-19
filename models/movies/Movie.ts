@@ -19,6 +19,7 @@ export default interface Movie {
     title: string;
     imdbID?: string;
     poster?: string;
+    year?: number;
     // length: number;
     // director: string;
     // released: Date;

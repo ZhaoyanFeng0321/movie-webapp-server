@@ -12,6 +12,7 @@ const MovieSchema = new mongoose.Schema<Movie>({
     //length: Number,
     //released: {type: Date, default: Date.now},
     //director: String,
+    year: Number,
     rating: {type: Number, default: 0},
     likes: {type: Number, default: 0},
     dislikes: {type: Number, default: 0}

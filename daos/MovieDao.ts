@@ -37,7 +37,7 @@ export default class MovieDao implements MovieDaoI {
      * database
      */
     findAllMovies = async (): Promise<Movie[]> =>
-        MovieModel.find().populate("postedBy").exec();
+        MovieModel.find().exec();
 
     /**
      * Uses MovieModel to retrieve single movie document from movies collection

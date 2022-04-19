@@ -5,6 +5,6 @@
 import mongoose from "mongoose";
 import MovieSchema from "./MovieSchema";
 
-const MovieModel = mongoose.model('UserModel', MovieSchema);
+const MovieModel = mongoose.model('MovieModel', MovieSchema);
 
 export default MovieModel;
