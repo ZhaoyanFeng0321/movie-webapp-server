@@ -12,6 +12,9 @@ export default interface BookmarkDaoI{
 
     userBookmarksMovie(movie:Movie, uid:string): Promise<any>;
 
+    userBookmarksMovieByID(mid:string,uid:string): Promise<any>;
+
+
     userUnbookmarksMovie(mid:string,uid:string): Promise<any>;
 
 }

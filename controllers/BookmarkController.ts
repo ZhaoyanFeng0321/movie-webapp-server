@@ -46,6 +46,7 @@ export default class BookmarkController implements BookmarkControllerI {
             app.get("/api/collects", BookmarkController.bookmarkController.findAllBookmarks);
             app.get("/api/users/:uid/collects", BookmarkController.bookmarkController.findAllMoviesThatUserBookmarked);
             app.get("/api/movies/:mid/collects", BookmarkController.bookmarkController.findAllUsersThatBookmarkedMovie);
+            app.post("/api/users/:uid/collects/:mid", BookmarkController.bookmarkController.userBookmarksMovieByID);
 
             app.post("/api/users/:uid/collects", BookmarkController.bookmarkController.userBookmarksMovie);
             app.delete("/api/users/:uid/collects/:mid", BookmarkController.bookmarkController.userUnbookmarksMovie);
@@ -132,9 +133,10 @@ export default class BookmarkController implements BookmarkControllerI {
      * body formatted as JSON containing the new bookmark that was inserted in the
      * database
      */
-        // userBookmarksMovie = (req: Request, res: Response) =>
-        //     BookmarkController.bookmarkDao.userBookmarksMovie(req.params.mid, req.params.uid)
-        //         .then(bookmarks => res.json(bookmarks));
+    userBookmarksMovieByID = (req: Request, res: Response) =>
+            BookmarkController.bookmarkDao.userBookmarksMovieByID(req.params.mid, req.params.uid)
+                .then(bookmarks => res.json(bookmarks));
+
     userBookmarksMovie = async (req: Request, res: Response) => {
         // const movie = req.body;
         const actualMovie = await BookmarkController.bookmarkDao.userBookmarksMovie(req.body, req.params.uid);

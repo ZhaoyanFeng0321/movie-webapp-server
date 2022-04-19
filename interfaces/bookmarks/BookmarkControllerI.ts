@@ -10,6 +10,8 @@ export default interface BookmarkControllerI{
 
     userBookmarksMovie(req: Request, res: Response): void;
 
+    userBookmarksMovieByID(req: Request, res: Response): void;
+
     userUnbookmarksMovie(req: Request, res: Response): void;
 
 
