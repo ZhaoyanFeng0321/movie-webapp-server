@@ -27,7 +27,7 @@ import ActController from "./controllers/ActController";
 
 const cors = require("cors");
 const session = require("express-session");
-// mongoose.connect('mongodb+srv://kimrine:kimrine123@cluster0.x1j4c.mongodb.net/final?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://irisfeng:Aa970321@cluster0.leeis.mongodb.net/finalProject?retryWrites=true&w=majority');
 
 const app = express();
 app.use(cors({
