@@ -2,8 +2,8 @@
  * @file Implements DAO managing data storage of dislikes. Uses mongoose DislikeModel
  * to integrate with MongoDB
  */
-import Dislike from "../../models/dislikes/Dislike";
-import DislikeModel from "../../mongoose/dislikes/DislikeModel";
+import Dislike from "../../models/unused/dislikes/Dislike";
+import DislikeModel from "../../mongoose/unused/dislikes/DislikeModel";
 
 /**
  * @class DislikeDao Implements Data Access Object managing data storage

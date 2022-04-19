@@ -1,3 +1,8 @@
 .idea
 node_modules
 build
+controllers/unused
+daos/unused
+models/unused
+mongoose/unused
+interfaces/unused

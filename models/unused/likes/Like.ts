@@ -3,8 +3,8 @@
  * users and tuits, as in user likes a tuit
  */
 
-import Review from "../reviews/Review";
-import User from "../users/User";
+import Review from "../../reviews/Review";
+import User from "../../users/User";
 
 /**
  * @typedef Like Represents likes relationship between a user and a tuit,

@@ -2,9 +2,9 @@
  * @file Implements DAO managing data storage of likes. Uses mongoose LikeModel
  * to integrate with MongoDB
  */
-import LikeDaoI from "../../interfaces/likes/LikeDaoI";
-import LikeModel from "../../mongoose/likes/LikeModel";
-import Like from "../../models/likes/Like";
+import LikeDaoI from "../../interfaces/unused/likes/LikeDaoI";
+import LikeModel from "../../mongoose/unused/likes/LikeModel";
+import Like from "../../models/unused/likes/Like";
 
 /**
  * @class LikeDao Implements Data Access Object managing data storage
