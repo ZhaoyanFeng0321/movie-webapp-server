@@ -1,4 +1,5 @@
 import User from "../../models/users/User";
+import Movie from "../../models/movies/Movie";
 
 export default interface UserDaoI {
 

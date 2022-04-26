@@ -5,6 +5,8 @@ import {Request, Response, Express} from "express";
 import UserDao from "../daos/UserDao";
 import UserControllerI from "../interfaces/users/UserControllerI";
 import User from "../models/users/User";
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 /**
  * @class UserController Implements RESTful Web service API for users resource.
@@ -115,9 +117,29 @@ export default class UserController implements UserControllerI {
      * @param {Response} res Represents response to client, including status
      * on whether updating a user was successful or not
      */
-    updateUser = (req: Request, res: Response) =>
-        UserController.userDao.updateUser(req.params.uid, req.body)
-            .then((status) => res.send(status));
+    updateUser = async (req: Request, res: Response) => {
+
+        let newUser = req.body;
+        let password = null;
+        if(newUser.password!==""){
+            const passwd = newUser.password;
+            password = await bcrypt.hash(passwd,saltRounds);
+        }else{
+            const user = await UserController.userDao.findUserById(newUser._id);
+            password = user.password;
+        }
+
+
+        newUser = {...newUser,password: password};
+
+
+        let update = await UserController.userDao.updateUser(newUser._id,newUser);
+        let updatedUser = await UserController.userDao.findUserById(newUser._id);
+        // @ts-ignore
+        req.session[`profile`] = updatedUser;
+        // @ts-ignore
+        res.json(updatedUser);
+    }
 
     /**
      * Removes a user instance from the database

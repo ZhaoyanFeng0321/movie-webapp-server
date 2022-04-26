@@ -5,6 +5,7 @@
 import User from "../models/users/User";
 import UserModel from "../mongoose/users/UserModel";
 import UserDaoI from "../interfaces/users/UserDaoI";
+import Movie from "../models/movies/Movie";
 
 /**
  * @class UserDao Implements Data Access Object managing data storage

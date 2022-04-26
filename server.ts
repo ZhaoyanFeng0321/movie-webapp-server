@@ -51,7 +51,7 @@ if (process.env.ENVIRONMENT === 'PRODUCTION') {
 }
 
 app.use(session(sess))
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));
 
 const userController = UserController.getInstance(app);
 const tuitController = ReviewController.getInstance(app);

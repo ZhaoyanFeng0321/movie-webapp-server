@@ -6,3 +6,4 @@ daos/unused
 models/unused
 mongoose/unused
 interfaces/unused
+.gitignore

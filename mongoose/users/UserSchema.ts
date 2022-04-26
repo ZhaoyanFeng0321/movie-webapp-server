@@ -6,6 +6,10 @@ import mongoose from "mongoose";
 import User from "../../models/users/User";
 import AccountType from "../../models/users/AccountType";
 
+function Movie() {
+
+}
+
 /**
  * @typedef User Represents users who use Tuiter
  * @property {string} username the username of user account
@@ -42,7 +46,8 @@ const UserSchema = new mongoose.Schema<User>({
     location: {
         latitude: {type: Number},
         longitude: {type: Number}
-    }
+    },
+    watchlist: [String]
 }, {collection: 'users'});
 
 export default UserSchema;

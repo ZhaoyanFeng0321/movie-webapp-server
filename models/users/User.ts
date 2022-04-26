@@ -2,9 +2,9 @@
  * @file User data model
  */
 import AccountType from "./AccountType";
-// import MaritalStatus from "./MaritalStatus";
 import Location from "./Location";
 import mongoose from "mongoose";
+import Movie from "../movies/Movie";
 
 /**
  * @typedef User Represents users in Tuiter
@@ -37,4 +37,5 @@ export default interface User {
     dateOfBirth?: Date;
     joined: Date;
     location?: Location;
+    watchlist?: Array<string>;
 }
