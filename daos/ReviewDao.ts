@@ -40,31 +40,31 @@ export default class ReviewDao implements ReviewDaoI {
 
     /**
      * Uses ReviewModel to retrieve all reviews document that specific user received from reviews collection
-     * @param {string} mid movie's primary key
+     * @param {string} omdbId movie's primary key
      * @returns Promise To be notified when reviews are retrieved from the database
      */
-    findAllReviewByMovie = async (mid: string): Promise<Review[]> =>
-        ReviewModel.find({to: mid});
+    findAllReviewByOMDB = async (omdbId: string): Promise<Review[]> =>
+        ReviewModel.find({to: omdbId});
 
     /**
      * Uses ReviewModel to retrieve all reviews document that specific user sent to another specific
      * user from reviews collection
      * @param {string} uid User's primary key of sender
-     * @param {string} mid Movie's primary key of receiver
+     * @param {string} omdbId Movie's primary key of receiver
      * @returns Promise To be notified when reviews are retrieved from the database
      */
-    findAllReviewsUserToMovie = async (uid: string, mid: string): Promise<Review[]> =>
-        ReviewModel.find({from: uid, to: mid});
+    findAllReviewsUserToMovie = async (uid: string, omdbId: string): Promise<Review[]> =>
+        ReviewModel.find({from: uid, to: omdbId});
 
     /**
      * Inserts review instance into the database
      * @param {string} uid User's primary key of sender
-     * @param {string} mid User's primary key of receive
+     * @param {string} omdbId User's primary key of receive
      * @param {Review} review Instance to be inserted into the database
      * @returns Promise To be notified when review is inserted into the database
      */
-    createReview = async (uid: string, mid: string, review: Review): Promise<Review> =>
-        ReviewModel.create({...review, from: uid, to: mid});
+    createReview = async (uid: string, omdbId: string, review: Review): Promise<Review> =>
+        ReviewModel.create({...review, from: uid, to: omdbId});
 
     /**
      * Removes review from the database

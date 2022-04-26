@@ -41,10 +41,10 @@ export default class ReviewController implements ReviewControllerI {
             app.get("/api/reviews", ReviewController.reviewController.findAllReviews);
 
             app.get("/api/users/:uid/reviews", ReviewController.reviewController.findAllReviewByUser);
-            app.get("/api/movies/:mid/reviews", ReviewController.reviewController.findAllReviewByMovie);
-            app.get("/api/users/:uid/reviews/:mid", ReviewController.reviewController.findAllReviewsUserToMovie);
+            app.get("/api/movies/:omdbId/reviews", ReviewController.reviewController.findAllReviewByOMDB);
+            app.get("/api/users/:uid/reviews/:omdbId", ReviewController.reviewController.findAllReviewsUserToMovie);
 
-            app.post("/api/users/:uid/reviews/:mid", ReviewController.reviewController.createReview);
+            app.post("/api/users/:uid/reviews/:omdbId", ReviewController.reviewController.createReview);
             app.delete("/api/reviews/:rid", ReviewController.reviewController.deleteReview);
             app.delete("/api/reviews", ReviewController.reviewController.deleteAllReviews);
 
@@ -75,8 +75,8 @@ export default class ReviewController implements ReviewControllerI {
      * @param {Response} res Represents response to client, including the
      * body formatted as JSON arrays containing the review objects
      */
-    findAllReviewByMovie = async (req: Request, res: Response) =>
-        ReviewController.reviewDao.findAllReviewByMovie(req.params.rid)
+    findAllReviewByOMDB = async (req: Request, res: Response) =>
+        ReviewController.reviewDao.findAllReviewByOMDB(req.params.omdbId)
             .then(reviews => res.json(reviews));
 
     /**
@@ -87,7 +87,7 @@ export default class ReviewController implements ReviewControllerI {
      * body formatted as JSON arrays containing the review objects
      */
     findAllReviewsUserToMovie = async (req: Request, res: Response) =>
-        ReviewController.reviewDao.findAllReviewsUserToMovie(req.params.uid, req.params.mid)
+        ReviewController.reviewDao.findAllReviewsUserToMovie(req.params.uid, req.params.omdbId)
             .then(reviews => res.json(reviews));
 
     /**
@@ -98,7 +98,7 @@ export default class ReviewController implements ReviewControllerI {
      * on whether deleting a review was successful or not
      */
     deleteReview = async (req: Request, res: Response) =>
-        ReviewController.reviewDao.deleteReview(req.params.mid)
+        ReviewController.reviewDao.deleteReview(req.params.rid)
             .then(status => res.json(status));
 
 
@@ -121,7 +121,7 @@ export default class ReviewController implements ReviewControllerI {
             // @ts-ignore
             req.session['profile']._id : req.params.uid;
 
-        ReviewController.reviewDao.createReview(userId, req.params.mid, req.body)
+        ReviewController.reviewDao.createReview(userId, req.params.omdbId, req.body)
             .then(review => res.json(review));
 
     }

@@ -19,7 +19,7 @@ export default interface Review {
      _id?: mongoose.Schema.Types.ObjectId;
     review?: string;
     from: User;
-    to: Movie;
+    to: string;
     postedOn: Date;
     rating?: number;
     stats: Stats;

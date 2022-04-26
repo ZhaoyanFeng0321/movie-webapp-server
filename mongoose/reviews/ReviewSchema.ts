@@ -13,7 +13,7 @@ import Review from "../../models/reviews/Review";
 const ReviewSchema = new mongoose.Schema<Review>({
     review: {type: String, default: ""},
     from: {type: Schema.Types.ObjectId, ref: "UserModel"},
-    to: {type: Schema.Types.ObjectId, ref: "MovieModel"},
+    to: {type: String, required: true},
     postedOn: {type: Date, default: Date.now},
     stats: {
         replies: {type: Number, default: 0},

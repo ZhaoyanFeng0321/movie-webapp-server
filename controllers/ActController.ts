@@ -5,7 +5,7 @@ import {Request, Response, Express} from "express";
 import ActDao from "../daos/ActDao";
 import ActControllerI from "../interfaces/movies/ActControllerI";
 import UserDao from "../daos/UserDao";
-import MovieService from "../services/movieService";
+//import MovieService from "../services/movieService";
 
 /**
  * @class ActController Implements RESTful Web service API for acts resource.

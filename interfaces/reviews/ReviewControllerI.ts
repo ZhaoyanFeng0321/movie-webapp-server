@@ -6,7 +6,7 @@ export default interface ReviewControllerI {
 
     findAllReviewByUser(req: Request,res:Response): void;
 
-    findAllReviewByMovie(req: Request,res:Response): void;
+    findAllReviewByOMDB(req: Request,res:Response): void;
 
     findAllReviewsUserToMovie(req: Request,res:Response): void;
 

@@ -5,12 +5,13 @@ export default interface ReviewDaoI {
 
     findAllReviewByUser(uid:string): Promise<Review[]>;
 
-    findAllReviewByMovie(mid:string): Promise<Review[]>;
+    //findAllReviewByMovie(mid:string): Promise<Review[]>;
 
-    findAllReviewsUserToMovie(uid:string,mid:string): Promise<Review[]>;
+    findAllReviewByOMDB(omdbId:string): Promise<Review[]>;
 
-    // createReview(uid:string, movie:Movie, review: Review): Promise<Review>;
-    createReview(uid:string, mid:string, review: Review): Promise<Review>;
+    findAllReviewsUserToMovie(uid:string,omdbId:string): Promise<Review[]>;
+
+    createReview(uid:string, omdbId:string, review: Review): Promise<Review>;
 
     deleteReview(rid:string): Promise<any>;
 
