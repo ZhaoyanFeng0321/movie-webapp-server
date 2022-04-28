@@ -86,6 +86,14 @@ export default class UserDao implements UserDaoI {
     deleteUsersByUsername = async (username: string): Promise<any> =>
         UserModel.deleteMany({username});
 
+    unlikeMovie = async (uid: string, mid:string): Promise<any> =>
+        UserModel.updateOne({ _id: uid },
+                { $pull: { 'watchlist': mid }} );
+
+    likeMovie = async (uid: string, mid:string): Promise<any> =>
+        UserModel.updateOne({ _id: uid },
+            { $push: { 'watchlist': mid }} );
+
     /**
      * Uses UserModel to retrieve single user document from users collection
      * @param {string} uid User's username

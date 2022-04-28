@@ -49,6 +49,10 @@ export default class UserController implements UserControllerI {
                 UserController.userController.createUser);
             app.put("/api/users/:uid",
                 UserController.userController.updateUser);
+            app.put("/api/users/:uid/watchlist/:mid",
+                UserController.userController.unlikeMovie);
+            app.put("/api/users/:uid/likeMovie/:mid",
+                UserController.userController.likeMovie);
             app.delete("/api/users/:uid",
                 UserController.userController.deleteUser);
             app.delete("/api/users",
@@ -140,7 +144,14 @@ export default class UserController implements UserControllerI {
         // @ts-ignore
         res.json(updatedUser);
     }
-
+    unlikeMovie = async (req: Request, res: Response) => {
+        UserController.userDao.unlikeMovie(req.params.uid, req.params.mid)
+            .then((user:User) => res.json(user));
+    }
+    likeMovie = async (req: Request, res: Response) => {
+        UserController.userDao.likeMovie(req.params.uid, req.params.mid)
+            .then((user:User) => res.json(user));
+    }
     /**
      * Removes a user instance from the database
      * @param {Request} req Represents request from client, including path
