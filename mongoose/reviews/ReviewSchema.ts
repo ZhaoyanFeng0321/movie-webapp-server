@@ -12,7 +12,7 @@ import Review from "../../models/reviews/Review";
  */
 const ReviewSchema = new mongoose.Schema<Review>({
     review: {type: String, default: ""},
-    from: {type: Schema.Types.ObjectId, ref: "UserModel"},
+    from: {type: String, default: ""},
     to: {type: String, required: true},
     postedOn: {type: Date, default: Date.now},
     stats: {
