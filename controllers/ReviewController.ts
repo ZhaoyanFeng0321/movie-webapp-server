@@ -6,6 +6,7 @@ import ReviewDao from "../daos/ReviewDao";
 import {Express, Request, Response} from "express";
 import Review from "../models/reviews/Review";
 import MovieService from "../services/movieService";
+import UserModel from "../mongoose/users/UserModel";
 
 
 /**
@@ -43,6 +44,7 @@ export default class ReviewController implements ReviewControllerI {
             app.get("/api/users/:uid/reviews", ReviewController.reviewController.findAllReviewByUser);
             app.get("/api/movies/:omdbId/reviews", ReviewController.reviewController.findAllReviewByOMDB);
             app.get("/api/users/:uid/reviews/:omdbId", ReviewController.reviewController.findAllReviewsUserToMovie);
+            app.get("/api/reviews/:name", ReviewController.reviewController.findAllReviewByUsername);
 
             app.post("/api/users/:uid/reviews/:omdbId", ReviewController.reviewController.createReview);
             app.delete("/api/reviews/:rid", ReviewController.reviewController.deleteReview);
@@ -66,6 +68,14 @@ export default class ReviewController implements ReviewControllerI {
         findAllReviewByUser = async (req: Request, res: Response) =>
             ReviewController.reviewDao.findAllReviewByUser(req.params.uid)
                 .then(reviews => res.json(reviews));
+
+    findAllReviewByUsername = async (req: Request, res: Response) => {
+        const user = await UserModel.findOne({username:req.params.name});
+        // @ts-ignore
+        ReviewController.reviewDao.findAllReviewByUser(user._id)
+            .then(reviews => res.json(reviews));
+    }
+
 
 
     /**

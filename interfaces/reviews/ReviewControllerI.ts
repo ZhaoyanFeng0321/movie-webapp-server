@@ -4,6 +4,8 @@ export default interface ReviewControllerI {
 
     findAllReviews(req: Request,res:Response): void;
 
+    //findAllReviewByUsername(req: Request,res:Response): void;
+
     findAllReviewByUser(req: Request,res:Response): void;
 
     findAllReviewByOMDB(req: Request,res:Response): void;

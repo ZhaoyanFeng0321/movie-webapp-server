@@ -5,6 +5,7 @@
 import ReviewDaoI from "../interfaces/reviews/ReviewDaoI";
 import ReviewModel from "../mongoose/reviews/ReviewModel";
 import Review from "../models/reviews/Review";
+import UserModel from "../mongoose/users/UserModel";
 
 /**
  * @class ReviewDao Implements Data Access Object managing data storage
@@ -37,6 +38,7 @@ export default class ReviewDao implements ReviewDaoI {
      */
     findAllReviewByUser = async (uid: string): Promise<Review[]> =>
         ReviewModel.find({from: uid});
+
 
     /**
      * Uses ReviewModel to retrieve all reviews document that specific user received from reviews collection
