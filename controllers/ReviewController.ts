@@ -127,11 +127,11 @@ export default class ReviewController implements ReviewControllerI {
 
     createReview = (req: Request, res: Response) => {
         // @ts-ignore
-        let userId = req.params.uid === "my" && req.session['profile'] ?
-            // @ts-ignore
-            req.session['profile']._id : req.params.uid;
-
-        ReviewController.reviewDao.createReview(userId, req.params.omdbId, req.body)
+        // let userId = req.params.uid === "my" && req.session['profile'] ?
+        //     // @ts-ignore
+        //     req.session['profile']._id : req.params.uid;
+//Todo
+        ReviewController.reviewDao.createReview(req.params.uid, req.params.omdbId, req.body)
             .then(review => res.json(review));
 
     }
