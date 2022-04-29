@@ -13,6 +13,6 @@ import User from "../users/User";
  * @property {User} userFollowing the User Id who is following
  */
 export default interface Follow{
-    userFollowed: User,
-    userFollowing: User
+    userFollowed: string,
+    userFollowing: string
 };
