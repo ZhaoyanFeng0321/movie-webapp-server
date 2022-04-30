@@ -45,6 +45,7 @@ export default class FollowController implements FollowControllerI {
             app.get("/api/users/:uid/followings", FollowController.followController.findAllUsersThatUserFollowing);
             app.get("/api/users/:uid/followers", FollowController.followController.findAllUsersThatFollowingUser);
             app.get("/api/follows", FollowController.followController.findAllFollow);
+            app.get("/api/users/:uid1/follows/:uid2",FollowController.followController.findUserFollowUser);
 
             app.post("/api/users/:uid1/follows/:uid2", FollowController.followController.userFollowsUser);
             app.delete("/api/users/:uid1/unfollows/:uid2", FollowController.followController.userUnfollowsUser);
@@ -130,6 +131,9 @@ export default class FollowController implements FollowControllerI {
         FollowController.followDao.userRemoveFollower(req.params.uid1, req.params.uid2)
             .then(status => res.json(status));
 
+    findUserFollowUser = (req: Request, res: Response) =>
+        FollowController.followDao.findUserFollowUser(req.params.uid1, req.params.uid2)
+            .then(status => res.json(status));
 
 }
 
