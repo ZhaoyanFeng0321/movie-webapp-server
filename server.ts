@@ -4,7 +4,6 @@
  * <ul>
  *     <li>users</li>
  *     <li>tuits</li>
- *     <li>likes</li>
  *     <li>follows</li>
  *     <li>bookmarks</li>
  *     <li>messages</li>
