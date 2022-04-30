@@ -5,6 +5,7 @@ import {Request, Response, Express} from "express";
 import UserDao from "../daos/UserDao";
 import UserControllerI from "../interfaces/users/UserControllerI";
 import User from "../models/users/User";
+import WatchList from "../models/users/watchList";
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -41,6 +42,8 @@ export default class UserController implements UserControllerI {
 
             app.get("/api/users",
                 UserController.userController.findAllUsers);
+            app.get("/api/watchlist/:uid",
+                UserController.userController.findWatchListByUser);
             app.get("/api/users/:uid",
                 UserController.userController.findUserById);
             app.get("/api/users/username/:username",
@@ -59,6 +62,8 @@ export default class UserController implements UserControllerI {
                 UserController.userController.deleteAllUsers);
             app.get("/api/users/username/:username/delete",
                 UserController.userController.deleteUsersByUsername);
+            app.post("/api/watchlist",
+                UserController.userController.createWatchList);
 
         }
         return UserController.userController;
@@ -144,14 +149,25 @@ export default class UserController implements UserControllerI {
         // @ts-ignore
         res.json(updatedUser);
     }
-    unlikeMovie = async (req: Request, res: Response) => {
-        UserController.userDao.unlikeMovie(req.params.uid, req.params.mid)
-            .then((user:User) => res.json(user));
-    }
-    likeMovie = async (req: Request, res: Response) => {
-        UserController.userDao.likeMovie(req.params.uid, req.params.mid)
-            .then((user:User) => res.json(user));
-    }
+    findWatchListByUser = async (req: Request, res: Response) =>
+        await UserController.userDao.findWatchListByUser(req.params.uid)
+            .then((watchList:WatchList) => res.json(watchList));
+    //     }catch (e) {
+    //         //list = await UserController.userDao.createWatchList(req.params.uid);
+    //     }
+    //     res.json(list);
+    // }
+
+    createWatchList = async (req: Request, res: Response) =>
+        await UserController.userDao.createWatchList(req.body).then((list:WatchList) => res.json(list));
+
+    unlikeMovie = async (req: Request, res: Response) =>
+        UserController.userDao.unlikeMovie(req.params.uid, req.params.mid);
+
+    likeMovie = async (req: Request, res: Response) =>
+        UserController.userDao.likeMovie(req.params.uid, req.params.mid);
+
+
     /**
      * Removes a user instance from the database
      * @param {Request} req Represents request from client, including path

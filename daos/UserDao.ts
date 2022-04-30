@@ -6,6 +6,8 @@ import User from "../models/users/User";
 import UserModel from "../mongoose/users/UserModel";
 import UserDaoI from "../interfaces/users/UserDaoI";
 import Movie from "../models/movies/Movie";
+import ListModel from "../mongoose/users/ListModel";
+import WatchList from "../models/users/watchList";
 
 /**
  * @class UserDao Implements Data Access Object managing data storage
@@ -52,6 +54,9 @@ export default class UserDao implements UserDaoI {
      */
     createUser = async(user: User): Promise<User> =>
         UserModel.create(user);
+    //     await this.createWatchList(user.username);
+    //     return newUser;
+    // }
 
     /**
      * Removes all users from the database. Useful for testing
@@ -78,6 +83,7 @@ export default class UserDao implements UserDaoI {
     updateUser = async (uid: string, user: User): Promise<any> =>
         UserModel.updateOne({_id:uid},{$set:user});
 
+
     /**
      * Removes user from the database
      * @param {string} username the username of user to be removed
@@ -87,16 +93,24 @@ export default class UserDao implements UserDaoI {
         UserModel.deleteMany({username});
 
     unlikeMovie = async (uid: string, mid:string): Promise<any> =>
-        UserModel.updateOne({ _id: uid },
-                { $pull: { 'watchlist': mid }} );
+        ListModel.updateOne({ user: uid },
+                { $pull: { 'movie': mid }} );
 
     likeMovie = async (uid: string, mid:string): Promise<any> =>
-        UserModel.updateOne({ _id: uid },
-            { $push: { 'watchlist': mid }} );
+        ListModel.updateOne({ user: uid },
+            { $push: { 'movie': mid }} );
 
+    findWatchListByUser = async(uid: string) :  Promise<any> =>
+        ListModel.findOne({user:uid});
+//FollowModel.find({userFollowing: uid})ç
+//             .populate("userFollowed")
+//             .exec();
+
+    createWatchList = async(list: WatchList) :  Promise<WatchList> =>
+        ListModel.create(list)
     /**
      * Uses UserModel to retrieve single user document from users collection
-     * @param {string} uid User's username
+     * @param {string} username User's username
      * @returns Promise To be notified when user is retrieved from the database
      */
     findUserByUsername = async (username: string): Promise<any> =>
