@@ -31,7 +31,7 @@ mongoose.connect('mongodb+srv://irisfeng:Aa970321@cluster0.leeis.mongodb.net/fin
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: process.env.CORS_ORIGIN
 }));
 
 const SECRET = 'process.env.SECRET';
@@ -76,6 +76,3 @@ AuthenticationController(app);
  */
 const PORT = 4000;
 app.listen(process.env.PORT || PORT);
-
-
-//Todo: acting, build database mon
